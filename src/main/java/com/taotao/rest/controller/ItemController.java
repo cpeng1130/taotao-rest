@@ -10,6 +10,7 @@ import com.taotao.common.utils.ExceptionUtil;
 import com.taotao.common.utils.TaotaoResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
+import com.taotao.pojo.TbItemParamItem;
 import com.taotao.rest.service.ItemService;
 
 @Controller
@@ -38,6 +39,19 @@ public class ItemController {
 		try{
 			TbItemDesc itemDesc = itemServer.getItemDescById(itemId);			
 			return TaotaoResult.ok(itemDesc);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+		}
+		
+	} 
+	@RequestMapping("/param/{itemId}")
+	@ResponseBody
+	public TaotaoResult getItemParamById(@PathVariable Long itemId){
+		try{
+			TbItemParamItem itemParamItem = itemServer.getItemParamById(itemId);			
+			return TaotaoResult.ok(itemParamItem);
 			
 		}catch(Exception e){
 			e.printStackTrace();
